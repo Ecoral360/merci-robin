@@ -9,66 +9,131 @@
       name="description"
       content="Parce que chacun doit pouvoir remercier Robin à sa manière."
     />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #bg {
+        position: fixed;
+        background-image: url("robin.png");
+        background-repeat: repeat;
+        filter: brightness(80%);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        z-index: -1;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      h1 {
+        position: relative;
+        margin-top: 4rem;
+        font-size: 4rem;
+      }
+
+      .animated {
+        box-shadow: inset 0px 0px 15px 15px rgba(0, 0, 0, 10%);
+        width: fit-content;
+        height: fit-content;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        animation-name: title;
+        animation-duration: 4s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+
+      #merci-robin-canvas {
+        background-color: white;
+        width: 80%;
+      }
+
+      #create-merci-dialog[open] {
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      #create-merci-button,
+      #share-canvas {
+        margin: 1rem;
+        padding: 1rem;
+        font-size: 1.5rem;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      #merci-preview {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 2rem;
+      }
+
+      ::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      @keyframes title {
+        from {
+          background-color: pink;
+        }
+
+        to {
+          background-color: cyan;
+        }
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script defer src="index.js"></script>
   </head>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    #bg {
-      position: fixed;
-      background-image: url("robin.png");
-      background-repeat: repeat;
-      filter: brightness(80%);
-      width: 100%;
-      height: 100%;
-      top: 0;
-      z-index: -1;
-    }
-
-    main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    h1 {
-      position: relative;
-      margin-top: 4rem;
-      font-size: 4rem;
-      box-shadow: inset 0px 0px 15px 15px rgba(0, 0, 0, 10%);
-      width: fit-content;
-      height: fit-content;
-      font-family: Georgia, "Times New Roman", Times, serif;
-      animation-name: title;
-      animation-duration: 4s;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-    }
-
-    #merci-robin-canvas {
-      width: 80%;
-    }
-
-    @keyframes title {
-      from {
-        background-color: pink;
-      }
-
-      to {
-        background-color: cyan;
-      }
-    }
-  </style>
-  <script defer src="index.js"></script>
 
   <body>
     <main>
-      <h1>Merci Robin!</h1>
-      <canvas id="merci-robin-canvas" />
+      <dialog id="create-merci-dialog">
+        <p>Créez votre propre merci à Robin!</p>
+        <form id="create-merci" action="">
+          <label for="m">Nombre de M:</label>
+          <input type="range" max="5" min="1" id="m" name="m" value="1" />
+          <br />
+          <label for="e">Nombre de E:</label>
+          <input type="range" max="5" min="1" id="e" name="e" value="1" />
+          <br />
+          <label for="r">Nombre de R:</label>
+          <input type="range" max="5" min="1" id="r" name="r" value="1" />
+          <br />
+          <label for="c">Nombre de C:</label>
+          <input type="range" max="5" min="1" id="c" name="c" value="1" />
+          <br />
+          <label for="i">Nombre de I:</label>
+          <input type="range" max="5" min="1" id="i" name="i" value="1" />
+          <br />
+          <label for="color">La couleur de votre merci:</label>
+          <input type="color" id="color" name="color" value="#000000" />
+          <p id="merci-preview"></p>
+          <button id="submit-merci">Créer! :)</button>
+        </form>
+        <form method="dialog">
+          <button>Annuler :(</button>
+        </form>
+      </dialog>
+      <h1 class="animated">Merci Robin!</h1>
+      <h2 class="animated">Cliquez sur la fresque pour y ajouter un merci!</h2>
+      <canvas id="merci-robin-canvas"></canvas>
+      <div class="" style="display: flex">
+        <button id="share-canvas">Enregistrez la fresque!</button>
+      </div>
     </main>
     <div id="bg" />
   </body>
