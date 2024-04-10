@@ -72,6 +72,7 @@ function getObjectFitSize(
  *      }} Merci
  */
 
+const nbMercis = $("#nb-mercis");
 let MERCIS = [];
 
 function loadMercis() {
@@ -79,6 +80,8 @@ function loadMercis() {
         method: "GET",
     }).then((mercis) => {
         MERCIS = Object.values(mercis);
+        nbMercis.text(MERCIS.length);
+
         MERCIS.forEach((merci) => {
             loadMerci(merci);
         });
@@ -144,8 +147,10 @@ const dialog = document.getElementById("create-merci-dialog");
  */
 function createMerci(e) {
     dialog.showModal();
-    merciPreview.position.x = (e.clientX - canvas.offsetLeft + window.scrollX) / ratio;
-    merciPreview.position.y = (e.clientY - canvas.offsetTop + window.scrollY) / ratio;
+    merciPreview.position.x =
+        (e.clientX - canvas.offsetLeft + window.scrollX) / ratio;
+    merciPreview.position.y =
+        (e.clientY - canvas.offsetTop + window.scrollY) / ratio;
 }
 
 const popupsign = document.getElementById("popup-sign");
