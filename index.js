@@ -193,11 +193,12 @@ $("#annuler-merci").on("click", (e) => {
 
 $("#submit-merci").on("click", (e) => {
     e.preventDefault();
+    if (merciPreview.signature === "") delete merciPreview.signature;
     $.ajax("https://mercirobin-52f7d-default-rtdb.firebaseio.com/mercis.json", {
         method: "POST",
         data: JSON.stringify(merciPreview),
     });
     dialog.close();
-    loadMerci(merciPreview);
+    loadMercis();
     setTimeout(() => alert("Merci created!"), 500);
 });
