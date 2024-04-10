@@ -144,15 +144,15 @@ const dialog = document.getElementById("create-merci-dialog");
  */
 function createMerci(e) {
     dialog.showModal();
-    merciPreview.position.x = (e.clientX - canvas.offsetLeft) / ratio;
-    merciPreview.position.y = (e.clientY - canvas.offsetTop) / ratio;
+    merciPreview.position.x = (e.clientX - canvas.offsetLeft + window.scrollX) / ratio;
+    merciPreview.position.y = (e.clientY - canvas.offsetTop + window.scrollY) / ratio;
 }
 
 const popupsign = document.getElementById("popup-sign");
 
 $("#merci-robin-canvas").on("mousemove", (e) => {
-    const x = (e.clientX - canvas.offsetLeft) / ratio;
-    const y = (e.clientY - canvas.offsetTop) / ratio;
+    const x = (e.clientX - canvas.offsetLeft + window.scrollX) / ratio;
+    const y = (e.clientY - canvas.offsetTop + window.scrollY) / ratio;
     let oneOfThem = false;
     MERCIS.forEach((merci) => {
         if (
@@ -163,8 +163,8 @@ $("#merci-robin-canvas").on("mousemove", (e) => {
         ) {
             popupsign.style.visibility = "visible";
             popupsign.innerText = merci.signature ?? "Anonyme";
-            popupsign.style.left = `${e.clientX + 20}px`;
-            popupsign.style.top = `${e.clientY + 10}px`;
+            popupsign.style.left = `${e.clientX + 20 + window.scrollX}px`;
+            popupsign.style.top = `${e.clientY + 10 + window.scrollY}px`;
 
             oneOfThem = true;
         }
