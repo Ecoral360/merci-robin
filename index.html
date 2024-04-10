@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #bg {
+      position: fixed;
+      background-image: url("robin.png");
+      background-repeat: repeat;
+      filter: brightness(80%);
+      width: 100%;
+      height: 100%;
+      top: 0;
+      z-index: -1;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      position: relative;
+      margin-top: 4rem;
+      font-size: 4rem;
+      box-shadow: inset 0px 0px 15px 15px rgba(0, 0, 0, 10%);
+      width: fit-content;
+      height: fit-content;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      animation-name: title;
+      animation-duration: 4s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    #merci-robin-canvas {
+        width: 80%;
+    }
+
+    @keyframes title {
+      from {
+        background-color: pink;
+      }
+
+      to {
+        background-color: cyan;
+      }
+    }
+  </style>
+  <script defer src="index.js"></script>
+
+  <body>
+    <main>
+      <h1>Merci Robin!</h1>
+      <canvas id="merci-robin-canvas" />
+    </main>
+    <div id="bg" />
+  </body>
+</html>
