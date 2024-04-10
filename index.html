@@ -10,6 +10,8 @@
       content="Parce que chacun doit pouvoir remercier Robin à sa manière."
     />
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Calligraffitti&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Coming+Soon&family=Metal+Mania&display=swap");
+
       body {
         margin: 0;
         padding: 0;
@@ -33,7 +35,7 @@
         justify-content: center;
       }
 
-      h1 {
+      @media view(width > 1000) h1 {
         position: relative;
         margin-top: 4rem;
         font-size: 4rem;
@@ -121,6 +123,22 @@
           <br />
           <label for="color">La couleur de votre merci:</label>
           <input type="color" id="color" name="color" value="#000000" />
+          <br />
+          <label for="font-family">La police de votre merci:</label>
+          <select id="fontFamily">
+            <option>Open Sans</option>
+            <option>Comic Neue</option>
+            <option>Times New Roman</option>
+            <option>Times</option>
+            <option>Arial</option>
+            <option>Verdana</option>
+            <option>Courier New</option>
+            <option>Lucida Console</option>
+            <option>Caesar Dressing</option>
+            <option>Metal Mania</option>
+            <option>Coming Soon</option>
+            <option>Calligraffitti</option>
+          </select>
           <p id="merci-preview"></p>
           <button id="submit-merci">Créer! :)</button>
         </form>

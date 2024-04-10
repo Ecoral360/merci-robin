@@ -66,6 +66,7 @@ function getObjectFitSize(
  *          c: 1,
  *          i: 1,
  *          color: string;
+ *          fontFamily: string;
  *      }} Merci
  */
 
@@ -86,7 +87,9 @@ function loadMercis() {
  */
 function loadMerci(merci) {
     ctx.fillStyle = merci.color;
+    ctx.font = `bold 5px ${merci.fontFamily ?? "Arial"}`;
     ctx.fillText(merciToString(merci), merci.position.x, merci.position.y);
+    console.log(merci);
 }
 
 const merciPreview = {
@@ -100,22 +103,25 @@ const merciPreview = {
         y: 0,
     },
     color: "black",
+    fontFamily: "Arial",
 };
 
 const merciPreviewEl = document.getElementById("merci-preview");
 const inputs = document.querySelector("#create-merci");
 for (const child of inputs.children) {
-    if (child.nodeName === "INPUT") {
+    if (child.nodeName === "INPUT" || child.nodeName === "SELECT") {
         console.log(child);
         child.addEventListener("input", () => {
             merciPreview[child.id] = child.value;
             merciPreviewEl.innerText = merciToString(merciPreview);
             merciPreviewEl.style.color = merciPreview.color;
+            merciPreviewEl.style.fontFamily = merciPreview.fontFamily;
         });
         merciPreview[child.id] = child.value;
     }
     merciPreviewEl.innerText = merciToString(merciPreview);
     merciPreviewEl.style.color = merciPreview.color;
+    merciPreviewEl.style.fontFamily = merciPreview.fontFamily;
 }
 
 /**
