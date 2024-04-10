@@ -1,5 +1,7 @@
 "use strict";
 
+// const $ = require("jquery");
+
 /** @type HTMLCanvasElement **/
 const canvas = document.getElementById("merci-robin-canvas");
 
@@ -70,13 +72,14 @@ function getObjectFitSize(
  *      }} Merci
  */
 
+let MERCIS = [];
+
 function loadMercis() {
     $.ajax("https://mercirobin-52f7d-default-rtdb.firebaseio.com/mercis.json", {
         method: "GET",
     }).then((mercis) => {
-        console.log(mercis);
-        Object.values(mercis).forEach((merci) => {
-            console.log(merci);
+        MERCIS = Object.values(mercis);
+        MERCIS.forEach((merci) => {
             loadMerci(merci);
         });
     });
@@ -89,7 +92,6 @@ function loadMerci(merci) {
     ctx.fillStyle = merci.color;
     ctx.font = `bold 5px ${merci.fontFamily ?? "Arial"}`;
     ctx.fillText(merciToString(merci), merci.position.x, merci.position.y);
-    console.log(merci);
 }
 
 const merciPreview = {
@@ -98,6 +100,7 @@ const merciPreview = {
     r: 1,
     c: 1,
     i: 1,
+    signature: "",
     position: {
         x: 0,
         y: 0,
@@ -143,9 +146,31 @@ function createMerci(e) {
     dialog.showModal();
     merciPreview.position.x = (e.clientX - canvas.offsetLeft) / ratio;
     merciPreview.position.y = (e.clientY - canvas.offsetTop) / ratio;
-    console.log(merciPreview.position);
 }
 
+const popupsign = document.getElementById("popup-sign");
+
+$("#merci-robin-canvas").on("mousemove", (e) => {
+    const x = (e.clientX - canvas.offsetLeft) / ratio;
+    const y = (e.clientY - canvas.offsetTop) / ratio;
+    let oneOfThem = false;
+    MERCIS.forEach((merci) => {
+        if (
+            x > merci.position.x &&
+            x < merci.position.x + ctx.measureText(merciToString(merci)).width &&
+            y > merci.position.y - 5 &&
+            y < merci.position.y
+        ) {
+            popupsign.style.visibility = "visible";
+            popupsign.innerText = merci.signature ?? "Anonyme";
+            popupsign.style.left = `${e.clientX + 20}px`;
+            popupsign.style.top = `${e.clientY + 10}px`;
+
+            oneOfThem = true;
+        }
+    });
+    !oneOfThem && (popupsign.style.visibility = "hidden");
+});
 $("#merci-robin-canvas").on("click", createMerci);
 
 $("#share-canvas").on("click", () => {
@@ -154,6 +179,11 @@ $("#share-canvas").on("click", () => {
     a.href = dataUrl;
     a.download = "merci.png";
     a.click();
+});
+
+$("#annuler-merci").on("click", (e) => {
+    e.preventDefault();
+    dialog.close();
 });
 
 $("#submit-merci").on("click", (e) => {

@@ -83,7 +83,6 @@
         padding-bottom: 1rem;
         font-size: 2rem;
       }
-
       #merci-actions {
         display: flex;
         justify-content: space-around;
@@ -107,15 +106,13 @@
         cursor: pointer;
       }
 
+
       ::backdrop {
         background-color: rgba(0, 0, 0, 0.5);
       }
 
       #popup-sign {
-        position: absolute;
-        pointer-events: none;
-        user-select: none;
-        color: white;
+        color: black;
         background-color: black;
         width: fit-content;
         border: 1px solid black;
@@ -174,7 +171,13 @@
             <option>Coming Soon</option>
             <option>Calligraffitti</option>
           </select>
-          <br />
+          <p id="merci-preview"></p>
+<<<<<<< Updated upstream
+          <div id="merci-actions">
+          <button id="annuler-merci">Annuler</button>
+          <button id="submit-merci">Créer! :)</button>
+          </div>
+=======
           <br />
           <label for="signature">Signe ton merci (optionnel):</label>
           <input
@@ -184,12 +187,14 @@
             value=""
             placeholder="Mathis Laroche"
           />
-          <p id="merci-preview"></p>
-          <div id="merci-actions">
-            <button id="annuler-merci">Annuler</button>
-            <button id="submit-merci">Créer! :)</button>
-          </div>
           <br />
+                    <br>
+          <button id="submit-merci">Créer! :)</button>
+        </form>
+        <br />
+        <form method="dialog">
+          <button>Annuler :(</button>
+>>>>>>> Stashed changes
         </form>
       </dialog>
       <h1 class="animated">Merci Robin!</h1>
