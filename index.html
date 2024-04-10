@@ -19,7 +19,7 @@
 
       #bg {
         position: fixed;
-        background-image: url("robin.png");
+        background-image: url("robin_upscaled.png");
         background-repeat: repeat;
         filter: brightness(80%);
         width: 100%;
@@ -55,6 +55,7 @@
 
       #merci-robin-canvas {
         background-color: white;
+        border-radius: 10px;
         width: 80%;
       }
 
@@ -82,6 +83,29 @@
         padding-bottom: 1rem;
         font-size: 2rem;
       }
+      #merci-actions {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      #annuler-merci {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      #submit-merci {
+        background-color: green;
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
 
       ::backdrop {
         background-color: rgba(0, 0, 0, 0.5);
@@ -140,10 +164,10 @@
             <option>Calligraffitti</option>
           </select>
           <p id="merci-preview"></p>
+          <div id="merci-actions">
+          <button id="annuler-merci">Annuler</button>
           <button id="submit-merci">Créer! :)</button>
-        </form>
-        <form method="dialog">
-          <button>Annuler :(</button>
+          </div>
         </form>
       </dialog>
       <h1 class="animated">Merci Robin!</h1>
